@@ -1,0 +1,17 @@
+# dune build bin/example_session.ml
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/dawidpawliczek4/.cache/dune/db
+# Workspace root:
+# /Users/dawidpawliczek4/Studia/UWr/programowanie-funkcyjne/projekt/microcamel_web
+# Auto-detected concurrency: 8
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/r0/yk025f0d1qs9t30qjb4b_5sc0000gn/T/dune_003f56_output

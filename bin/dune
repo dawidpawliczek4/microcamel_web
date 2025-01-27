@@ -1,0 +1,14 @@
+(executable
+ (public_name microcamel_web)
+ (name example_session) 
+ (libraries microcamel_web))
+
+; (executable
+;  (public_name microcamel_web)
+;  (name example_db) 
+;  (libraries microcamel_web))
+
+; (executable
+;  (public_name microcamel_web)
+;  (name example) 
+;  (libraries microcamel_web))

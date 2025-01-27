@@ -1,0 +1,5 @@
+(library
+ (name microcamel_web)
+ (public_name microcamel_web)
+ (libraries cohttp-lwt-unix lwt yojson sqlite3)
+ )
