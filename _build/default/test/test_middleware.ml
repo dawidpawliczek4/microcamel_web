@@ -11,7 +11,7 @@ let setup_test_env () =
   add_route
     ~path:"/hello"
     ~method_:`GET
-    ~handler:(fun _req _body _params ->
+    ~handler:(fun _req _body _params _data->
        let resp = Cohttp.Response.make ~status:`OK () in
        let body = Cohttp_lwt.Body.of_string "Hello from /hello" in
        Lwt.return (resp, body)

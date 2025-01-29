@@ -1,11 +1,11 @@
 open Microcamel_web.Server
 open Microcamel_web.Router
 
-let home_handler: handler = fun _req _body _params ->
+let home_handler: handler = fun _req _body _params _ ->
   let body = Cohttp_lwt.Body.of_string "Hello, world!" in
   Lwt.return (Cohttp.Response.make ~status:`OK (), body)
 
-let dynamic_handler: handler = fun _req _body _params ->
+let dynamic_handler: handler = fun _req _body _params _ ->
   let param = List.assoc "id" _params in
   let body = Cohttp_lwt.Body.of_string ("Hello, world, from " ^ param) in  
   Lwt.return (Cohttp.Response.make ~status:`OK (), body)

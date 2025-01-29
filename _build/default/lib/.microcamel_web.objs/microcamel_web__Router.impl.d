@@ -1,1 +1,1 @@
-lib/router.ml: Cohttp Cohttp_lwt Cohttp_lwt_unix List Lwt Request Response Static String Uri
+lib/router.ml: Cohttp Cohttp_lwt Cohttp_lwt_unix Hashtbl List Lwt Request Response Static String Uri

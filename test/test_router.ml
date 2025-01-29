@@ -2,7 +2,7 @@ open Alcotest
 open Microcamel_web.Router
 
 let test_handler : handler =
-  fun _req _body _params -> 
+  fun _req _body _params _data -> 
     Lwt.return (Cohttp.Response.make ~status:`OK (), Cohttp_lwt.Body.empty)
 
 let test_find_route _switch () =

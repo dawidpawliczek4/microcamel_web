@@ -8,7 +8,8 @@ module type SESSION_STORE = sig
 
   val create : float -> t Lwt.t
   val get : t -> session_id -> session_data option Lwt.t
-  val create_session : t -> session_data -> session_id Lwt.t
+  val set : t -> session_id -> string -> string -> unit Lwt.t
+  val create_session : t  -> (session_id * session_data) Lwt.t
   val remove : t -> session_id -> unit Lwt.t
 end
 
@@ -64,16 +65,26 @@ module In_memory_store : SESSION_STORE = struct
     let id = String.of_seq (List.to_seq (generate [] 64)) in (* 64-character ID *)
     id
 
-  let create_session store data =
+  let create_session store =
     let id = generate_session_id () in (* Implement secure ID generation *)
     let now = Unix.gettimeofday () in
-    let entry = { data; expires_at = now +. store.lifetime } in
+    let entry = { data = Hashtbl.create 100; expires_at = now +. store.lifetime } in
     Lwt_mutex.with_lock store.mutex (fun () ->
       Hashtbl.add store.sessions id entry;
-      Lwt.return id)
+      Lwt.return (id, entry.data))
 
   let remove store id =
     Lwt_mutex.with_lock store.mutex (fun () ->
       Hashtbl.remove store.sessions id;
       Lwt.return ())      
+
+  let set store id key value =
+    Lwt_mutex.with_lock store.mutex (fun () ->
+      match Hashtbl.find_opt store.sessions id with
+      | Some entry ->
+          Hashtbl.replace entry.data key value;
+          Lwt.return ()
+      | None ->
+          Lwt.return () (* Session does not exist, do nothing *)
+    )
 end

@@ -15,7 +15,7 @@ let map_user_row row =
   | [| Sqlite3.Data.INT id; Sqlite3.Data.TEXT username; Sqlite3.Data.TEXT email; Sqlite3.Data.TEXT created_at; |] -> {id; username; email; created_at}
   | _ -> failwith "Invalid row"
 
-let users_handler _req _body _ =
+let users_handler _req _body _params _data =
   let result = 
     Database.query (Database.Mapper map_user_row) "SELECT id, username, email, created_at FROM users"
   in
@@ -43,7 +43,7 @@ let users_handler _req _body _ =
   Lwt.return (response, Cohttp_lwt.Body.of_string json)
 
 (* Handler for getting single user *)
-let user_handler _req _body _params =  
+let user_handler _req _body _params _data =  
   let param = List.assoc "id" _params in
 
   let result = 

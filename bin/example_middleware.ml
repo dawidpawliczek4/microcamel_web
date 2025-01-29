@@ -2,25 +2,12 @@ open Microcamel_web.Server
 open Microcamel_web.Middleware
 open Microcamel_web.Router
 
-
-(* PRZYKŁAD UŻYCIA                                    *)
-(* -------------------------------------------------- *)
-
-(* Możesz teraz w pliku main/dla testu zrobić np.: 
-   - zarejestrować trasę
-   - zarejestrować middlewares
-   - startować serwer z callbackiem [callback_with_routing_and_middleware].
-*)
-
 let () =
-  (* Czyścimy trasy na wszelki wypadek *)
-  clear_routes ();
-
   (* Dodajmy jakąś przykładową trasę *)
   add_route 
     ~path:"/hello" 
     ~method_:`GET 
-    ~handler:(fun _req _body _params ->
+    ~handler:(fun _req _body _params _data ->
       let resp = Cohttp.Response.make ~status:`OK () in
       let body = Cohttp_lwt.Body.of_string "Hello World!" in
       Lwt.return (resp, body)
@@ -31,7 +18,7 @@ let () =
     ~path:"/users/:id"
     ~method_:`GET
     ~middlewares:[logger_middleware; secret_middleware]
-    ~handler:(fun _req _body params ->
+    ~handler:(fun _req _body params _data ->
       match List.assoc_opt "id" params with
       | Some user_id ->
         let resp = Cohttp.Response.make ~status:`OK () in

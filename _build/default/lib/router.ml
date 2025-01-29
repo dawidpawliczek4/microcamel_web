@@ -2,7 +2,10 @@ open Cohttp_lwt_unix
 
 type type_method = Cohttp.Code.meth
 
-type handler = Request.t -> Cohttp_lwt.Body.t -> (string * string) list -> (Response.t * Cohttp_lwt.Body.t) Lwt.t
+type handler = 
+  Request.t -> Cohttp_lwt.Body.t -> (string * string) list ->  ((string, string) Hashtbl.t) option
+  -> (Response.t * Cohttp_lwt.Body.t) Lwt.t
+
 type middleware = handler -> handler
 type route = { path: string; method_: type_method; handler: handler; middlewares: middleware list}
 
@@ -55,7 +58,7 @@ let default_handler _req _body =
   Lwt.return (Cohttp.Response.make ~status:`Not_found (), body)
 
 let use_static ~path ~base_dir =  
-  let handler _ _body params =
+  let handler _ _body params _ =
     match params with
     | [(_, file_path)] -> Static.serve_file base_dir file_path
     | _ ->

@@ -1,1 +1,1 @@
-lib/middleware.ml: Cohttp Cohttp_lwt List Lwt Lwt_io Router Uri
+lib/middleware.ml: Cohttp Cohttp_lwt Header List Lwt Lwt_io Printf Request Response Router Session String Uri
