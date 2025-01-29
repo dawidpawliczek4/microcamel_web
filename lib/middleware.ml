@@ -82,10 +82,10 @@ let secret_middleware (next : handler) : handler =
                Lwt.return (sid, d)
            | None ->
                (* Nie ma takiej sesji (wygasła/usunięta) -> tworzymy nową *)
-               Session.In_memory_store.create_session store)
+               Session.In_memory_store.create_session store (Hashtbl.create 100))
       | None ->
           (* Nie było ciasteczka -> tworzymy nową sesję *)
-          Session.In_memory_store.create_session store
+          Session.In_memory_store.create_session store (Hashtbl.create 100)
     in
 
     (* let session_deleted = ref false in

@@ -5,3 +5,6 @@ module Test_middleware = Dune__exe__Test_middleware
 
 (** @canonical Dune__exe.Test_router *)
 module Test_router = Dune__exe__Test_router
+
+(** @canonical Dune__exe.Test_session *)
+module Test_session = Dune__exe__Test_session

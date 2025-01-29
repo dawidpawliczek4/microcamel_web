@@ -1,4 +1,4 @@
-# dune exec bin/example_session.exe
+# dune test
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /Users/dawidpawliczek4/.cache/dune/db
@@ -13,7 +13,36 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/r0/yk025f0d1qs9t30qjb4b_5sc0000gn/T/dune_0b1117_output
-$ (cd _build/default && /opt/homebrew/bin/ocamldep.opt -modules -impl bin/example_session.ml) > _build/default/bin/.example_session.eobjs/dune__exe__Example_session.impl.d
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I bin/.example_session.eobjs/byte -I bin/.example_session.eobjs/native -I /Users/dawidpawliczek4/.opam/5.2.0/lib/angstrom -I /Users/dawidpawliczek4/.opam/5.2.0/lib/astring -I /Users/dawidpawliczek4/.opam/5.2.0/lib/base64 -I /Users/dawidpawliczek4/.opam/5.2.0/lib/bigstringaf -I /Users/dawidpawliczek4/.opam/5.2.0/lib/bytes -I /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp -I /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp-lwt -I /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp-lwt-unix -I /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit -I /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit-lwt -I /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit-lwt-unix -I /Users/dawidpawliczek4/.opam/5.2.0/lib/domain-name -I /Users/dawidpawliczek4/.opam/5.2.0/lib/fmt -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr-sexp -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr/unix -I /Users/dawidpawliczek4/.opam/5.2.0/lib/logs -I /Users/dawidpawliczek4/.opam/5.2.0/lib/lwt -I /Users/dawidpawliczek4/.opam/5.2.0/lib/lwt/unix -I /Users/dawidpawliczek4/.opam/5.2.0/lib/macaddr -I /Users/dawidpawliczek4/.opam/5.2.0/lib/magic-mime -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ocplib-endian -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ocplib-endian/bigstring -I /Users/dawidpawliczek4/.opam/5.2.0/lib/ppx_sexp_conv/runtime-lib -I /Users/dawidpawliczek4/.opam/5.2.0/lib/re -I /Users/dawidpawliczek4/.opam/5.2.0/lib/seq -I /Users/dawidpawliczek4/.opam/5.2.0/lib/sexplib0 -I /Users/dawidpawliczek4/.opam/5.2.0/lib/sqlite3 -I /Users/dawidpawliczek4/.opam/5.2.0/lib/stringext -I /Users/dawidpawliczek4/.opam/5.2.0/lib/uri -I /Users/dawidpawliczek4/.opam/5.2.0/lib/uri-sexp -I /Users/dawidpawliczek4/.opam/5.2.0/lib/uri/services -I /Users/dawidpawliczek4/.opam/5.2.0/lib/yojson -I /opt/homebrew/lib/ocaml/threads -I /opt/homebrew/lib/ocaml/unix -I lib/.microcamel_web.objs/byte -I lib/.microcamel_web.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o bin/.example_session.eobjs/native/dune__exe__Example_session.cmx -c -impl bin/example_session.ml)
-$ (cd _build/default && /opt/homebrew/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/example_session.exe /Users/dawidpawliczek4/.opam/5.2.0/lib/fmt/fmt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/logs/logs.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/lwt/lwt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/logs/logs_lwt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/sexplib0/sexplib0.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/macaddr/macaddr.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/domain-name/domain_name.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr/ipaddr.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ppx_sexp_conv/runtime-lib/ppx_sexp_conv_lib.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr-sexp/ipaddr_sexp.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/stringext/stringext.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/bigstringaf/bigstringaf.cmxa -I /Users/dawidpawliczek4/.opam/5.2.0/lib/bigstringaf /Users/dawidpawliczek4/.opam/5.2.0/lib/angstrom/angstrom.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/uri/uri.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/astring/astring.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit/conduit.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit-lwt/conduit_lwt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/magic-mime/magic_mime_library.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ocplib-endian/ocplib_endian.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cmxa /opt/homebrew/lib/ocaml/unix/unix.cmxa /opt/homebrew/lib/ocaml/threads/threads.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/lwt/unix/lwt_unix.cmxa -I /Users/dawidpawliczek4/.opam/5.2.0/lib/lwt/unix /Users/dawidpawliczek4/.opam/5.2.0/lib/uri/services/uri_services.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/ipaddr/unix/ipaddr_unix.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/conduit-lwt-unix/conduit_lwt_unix.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/re/re.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/uri-sexp/uri_sexp.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/base64/base64.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp/cohttp.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp-lwt/cohttp_lwt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/logs/logs_fmt.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/cohttp-lwt-unix/cohttp_lwt_unix.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/yojson/yojson.cmxa /Users/dawidpawliczek4/.opam/5.2.0/lib/sqlite3/sqlite3.cmxa -I /Users/dawidpawliczek4/.opam/5.2.0/lib/sqlite3 lib/microcamel_web.cmxa bin/.example_session.eobjs/native/dune__exe.cmx bin/.example_session.eobjs/native/dune__exe__Example_session.cmx)
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/r0/yk025f0d1qs9t30qjb4b_5sc0000gn/T/dune_759027_output
+$ (cd _build/default/test && ./test_middleware.exe)
+> Testing `middleware'.
+> This run has ID `OVKWCXRW'.
+>
+>   [OK]          middleware          0   secret_middleware valid.
+>   [OK]          middleware          1   secret_middleware invalid.
+>
+> Full test results in `~/Studia/microcamel_web/_build/default/test/_build/_tests/middleware'.
+> Test Successful in 0.001s. 2 tests run.
+$ (cd _build/default/test && ./test_session.exe)
+> Testing `Session Store tests'.
+> This run has ID `A42425DJ'.
+>
+>   [OK]          Store basic          0   store is empty on create.
+>   [OK]          Store basic          1   create and get session.
+>   [OK]          Store basic          2   set session value.
+>   [OK]          Store basic          3   remove session.
+>
+> Full test results in `~/Studia/microcamel_web/_build/default/test/_build/_tests/Session Store tests'.
+> Test Successful in 0.001s. 4 tests run.
+$ (cd _build/default/test && ./test_router.exe)
+> Testing `Router tests'.
+> This run has ID `E35HP8RI'.
+>
+>   [OK]          route_finding          0   find existing route.
+>   [OK]          route_finding          1   handle missing route.
+>   [OK]          route_finding          2   handle missing method.
+>   [OK]          route_finding          3   handle dynamic route.
+>   [OK]          route_finding          4   handle combined route.
+>
+> Full test results in `~/Studia/microcamel_web/_build/default/test/_build/_tests/Router tests'.
+> Test Successful in 0.001s. 5 tests run.

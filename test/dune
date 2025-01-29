@@ -5,3 +5,8 @@
  (test
  (name test_middleware)
  (libraries microcamel_web alcotest alcotest-lwt lwt yojson))
+
+
+ (test
+ (name test_session)
+ (libraries microcamel_web alcotest alcotest-lwt lwt yojson))
