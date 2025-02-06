@@ -6,12 +6,6 @@ type server_error =
   | InvalidPort
   | NetworkError of string
 
-
-(** Create and start an HTTP server
-    @param port The port number to listen on
-    @param callback The handler function for incoming requests
-    @return A promise that resolves to either the running server or an error
-*)
 let create_server ~port callback =
   if port <= 0 || port > 65535 then
     Lwt.return (Error InvalidPort)

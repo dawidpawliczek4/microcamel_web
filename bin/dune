@@ -1,6 +1,6 @@
 (executable
  (public_name microcamel_web)
- (name example_session) 
+ (name example_template) 
  (libraries microcamel_web))
 
 ; (executable

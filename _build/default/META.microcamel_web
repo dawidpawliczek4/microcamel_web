@@ -1,6 +1,0 @@
-description = ""
-requires = "cohttp-lwt-unix lwt sqlite3 yojson"
-archive(byte) = "microcamel_web.cma"
-archive(native) = "microcamel_web.cmxa"
-plugin(byte) = "microcamel_web.cma"
-plugin(native) = "microcamel_web.cmxs"
