@@ -1,4 +1,3 @@
-```markdown
 # Microcamel Web
 
 Microcamel Web is a lightweight OCaml library for building web applications. It offers a modular and extensible framework to simplify handling HTTP requests, database interactions, session management, and dynamic content rendering.
