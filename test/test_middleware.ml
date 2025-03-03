@@ -23,7 +23,7 @@ let setup_test_env () =
 let test_secret_middleware_valid () =
   let callback = setup_test_env () in
   (* Przygotowujemy sztuczne żądanie: GET /hello z właściwym "X-Secret" *)
-  let headers = Cohttp.Header.of_list [("X-Secret","abracadabra")] in
+  let headers = Cohttp.Header.of_list [("X-Secret","abcdefg")] in
   let req = Cohttp.Request.make ~headers (Uri.of_string "/hello") in
   let body = Cohttp_lwt.Body.empty in
 

@@ -16,26 +16,22 @@ let clear_routes () = routes := []
 let add_route ?(middlewares=[]) ~path ~method_ ~handler () =
   routes := { path; method_; handler; middlewares } :: !routes
 
-(* function which takes path , takes some path from all routes, and return Some path and string * string list if matches, where string list is a list of params, or none *) 
   let parse_path (path: string) (route_path: string) : (string * string) list option =
     let path_parts = String.split_on_char '/' path |> List.filter ((<>) "") in
     let route_parts = String.split_on_char '/' route_path |> List.filter ((<>) "") in
     let rec aux path_parts route_parts acc =
       match path_parts, route_parts with
-      | [], [] -> Some (List.rev acc)  (* Exact match *)
-      | [], _ | _, [] -> None         (* Length mismatch *)
-      | p :: ps, "*" :: _ ->
-        (* Wildcard matches the remaining path *)
+      | [], [] -> Some (List.rev acc) 
+      | [], _ | _, [] -> None         
+      | p :: ps, "*" :: _ ->        
         let wildcard_path = String.concat "/" (p :: ps) in
         Some (List.rev (("*", wildcard_path) :: acc))        
-      | p :: ps, r :: rs when String.length r > 0 && r.[0] = ':' ->
-        (* Dynamic segment *)
+      | p :: ps, r :: rs when String.length r > 0 && r.[0] = ':' ->        
         let key = String.sub r 1 (String.length r - 1) in
         aux ps rs ((key, p) :: acc)
-      | p :: ps, r :: rs when p = r ->
-          (* Static segment matches *)
+      | p :: ps, r :: rs when p = r ->          
           aux ps rs acc
-      | _ -> None  (* Mismatch *)
+      | _ -> None
     in
     aux path_parts route_parts []
 

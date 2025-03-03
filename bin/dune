@@ -1,14 +1,24 @@
 (executable
- (public_name microcamel_web)
+ (public_name example_template)
  (name example_template) 
  (libraries microcamel_web))
 
-; (executable
-;  (public_name microcamel_web)
-;  (name example_db) 
-;  (libraries microcamel_web))
+(executable
+ (public_name example_db)
+ (name example_db) 
+ (libraries microcamel_web))
 
-; (executable
-;  (public_name microcamel_web)
-;  (name example) 
-;  (libraries microcamel_web))
+(executable
+ (public_name example)
+ (name example) 
+ (libraries microcamel_web))
+
+(executable
+ (public_name example_middleware)
+ (name example_middleware) 
+ (libraries microcamel_web))
+
+(executable
+ (public_name example_session)
+ (name example_session) 
+ (libraries microcamel_web))

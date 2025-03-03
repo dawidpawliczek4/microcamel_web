@@ -2,7 +2,6 @@ open Microcamel_web
 open Cohttp
 open Cohttp_lwt_unix
 
-(* Handler for listing users *)
 type user_row = {
   id: int64;
   username: string;
@@ -83,4 +82,4 @@ let () =
   Router.add_route ~path:"/users" ~method_:`GET ~handler:users_handler ();
   Router.add_route ~path:"/users/:id" ~method_:`GET ~handler:user_handler ();
   
-  Lwt_main.run (Microcamel_web.Server.start_server ~port:3000)
+  Lwt_main.run (Microcamel_web.Server.start_server ~port:8080)

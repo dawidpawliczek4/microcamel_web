@@ -16,8 +16,7 @@ Hello, {{ user }}!
 {{/for}}
 </ul>
 |} in
-
-  (* Tworzymy kontekst i wstawiamy przykładowe dane *)
+ 
   let ctx : context = Hashtbl.create 10 in
   Hashtbl.add ctx "user" (Str "Alice");
   Hashtbl.add ctx "is_admin" (Bool false);

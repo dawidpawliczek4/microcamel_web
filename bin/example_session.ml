@@ -5,7 +5,6 @@ open Microcamel_web
 open Cohttp
 
 let session_store =
-  (* np. sesje żyją 10 minut (600.0 sek), albo cokolwiek tam masz w create *)
   Lwt_main.run (Session.In_memory_store.create 600.0)
 
 
@@ -22,7 +21,7 @@ let count_handler: handler =
     | None -> 0
   in
   let new_count = current + 1 in
-  (* Zapisujemy nową wartość w sesji *)
+  
   Hashtbl.replace data "count" (string_of_int new_count);
 
   let msg = Printf.sprintf "Count in session = %d" new_count in
@@ -31,10 +30,7 @@ let count_handler: handler =
   Lwt.return (resp, body)
 
 
-
-
-let () =
-  (* Dodajmy jakąś przykładową trasę *)
+let () = 
   add_route 
     ~path:"/hello" 
     ~method_:`GET 
@@ -42,9 +38,4 @@ let () =
 
   register_middleware (session_middleware session_store);
 
-  (* Odpalamy serwer ze składaną logiką:
-       - routing (find_route)
-       - middleware (logger + secret)
-       - default_handler (404)
-  *)
   Lwt_main.run (start_server ~port:8080);

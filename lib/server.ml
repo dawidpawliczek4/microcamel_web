@@ -10,8 +10,7 @@ let create_server ~port callback =
   if port <= 0 || port > 65535 then
     Lwt.return (Error InvalidPort)
   else
-    let server_callback _conn req body =
-      (* Add basic error handling around the callback *)
+    let server_callback _conn req body =      
       Lwt.catch
         (fun () -> 
           let* (resp, body) = callback req body in
@@ -28,8 +27,7 @@ let create_server ~port callback =
             Cohttp_lwt.Body.of_string error_message              
           in
           Lwt.return (error_response, error_body))
-    in
-    (* Try to create and start the server *)
+    in    
     Lwt.catch
       (fun () ->
         let* server = 

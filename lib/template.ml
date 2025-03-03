@@ -1,26 +1,18 @@
 open Str
 
-(* ===================== *)
-(* DEFINICJE TYPÓW *)
-(* ===================== *)
-
-(* Typ wartości, które możemy wstawić do szablonu *)
 type value =
   | Str of string
   | Bool of bool
   | List of value list
 
-(* Kontekst – mapa nazw -> value *)
 type context = (string, value) Hashtbl.t
 
-(* AST szablonu *)
 type node =
   | Text of string                      (* Zwykły tekst *)
   | Var of string                       (* {{ var }} *)
   | IfBlock of string * node list * node list  (* {{#if cond}} ... {{#else}} ... {{/if}} *)
   | ForBlock of string * string * node list     (* {{#for item in list}} ... {{/for}} *)
 
-(* Tokeny uzyskane z szablonu *)
 type token =
   | T_Text of string
   | T_Var of string
@@ -30,14 +22,8 @@ type token =
   | T_For of string * string   (* np. "{{#for item in list}}" *)
   | T_EndFor              (* "{{/for}}" *)
 
-(* ===================== *)
-(* POMOCNICZE FUNKCJE *)
-(* ===================== *)
-
-(* Używamy String.trim – ewentualnie definiujemy alias *)
 let trim = String.trim
 
-(* Funkcja extrahująca zawartość z tekstu postaci "{{ ... }}" *)
 let extract_tag s =
   let re = regexp "{{\\(.*?\\)}}" in
   if string_match re s 0 then
@@ -45,12 +31,8 @@ let extract_tag s =
   else
     s |> trim
 
-(* ===================== *)
-(* TOKENIZATOR *)
-(* ===================== *)
-
-let tokenize (template : string) : token list =
-  (* Szukamy fragmentów {{ ... }} *)
+    
+let tokenize (template : string) : token list =  
   let re = regexp "{{\\(.*?\\)}}" in
   let parts = full_split re template in
   List.map (fun part ->
@@ -74,10 +56,6 @@ let tokenize (template : string) : token list =
         else
           T_Var tag
   ) parts
-
-(* ===================== *)
-(* PARSER *)
-(* ===================== *)
 
 let parse_tokens (tokens : token list) : (node list * token list) =
   let rec aux acc tokens =
@@ -119,10 +97,6 @@ let parse_template (template : string) : node list =
   let (nodes, _) = parse_tokens tokens in
   nodes
 
-(* ===================== *)
-(* RENDERER *)
-(* ===================== *)
-
 let rec render_node (ctx : context) (n : node) : string =
   match n with
   | Text s -> s
@@ -130,7 +104,7 @@ let rec render_node (ctx : context) (n : node) : string =
       (match Hashtbl.find_opt ctx v with
        | Some (Str s) -> s
        | Some (Bool b) -> if b then "true" else "false"
-       | Some (List _) -> "<list>"  (* Nie interpolujemy list bezpośrednio *)
+       | Some (List _) -> "<list>" (* nie renderujemy listy? *)
        | None -> "")
   | IfBlock (cond, then_nodes, else_nodes) ->
       (match Hashtbl.find_opt ctx cond with

@@ -1,6 +1,5 @@
 open Lwt.Syntax
 
-(* session_store.ml *)
 module type SESSION_STORE = sig
   type t
   type session_id = string
@@ -24,8 +23,7 @@ module In_memory_store : SESSION_STORE = struct
   }
 
   let create lifetime =
-    let store = { sessions = Hashtbl.create 100; mutex = Lwt_mutex.create (); lifetime } in
-    (* Background cleanup every 5 minutes *)
+    let store = { sessions = Hashtbl.create 100; mutex = Lwt_mutex.create (); lifetime } in    
     let rec cleanup () =
       let* () = Lwt_unix.sleep 300.0 in
       let now = Unix.gettimeofday () in
@@ -62,11 +60,11 @@ module In_memory_store : SESSION_STORE = struct
       if n <= 0 then acc
       else generate (random_char () :: acc) (n - 1)
     in
-    let id = String.of_seq (List.to_seq (generate [] 64)) in (* 64-character ID *)
+    let id = String.of_seq (List.to_seq (generate [] 64)) in
     id
 
   let create_session store data =
-    let id = generate_session_id () in (* Implement secure ID generation *)
+    let id = generate_session_id () in (* todo: better uniqid generation*)
     let now = Unix.gettimeofday () in
     let entry = { data; expires_at = now +. store.lifetime } in
     Lwt_mutex.with_lock store.mutex (fun () ->
@@ -85,6 +83,6 @@ module In_memory_store : SESSION_STORE = struct
           Hashtbl.replace entry.data key value;
           Lwt.return ()
       | None ->
-          Lwt.return () (* Session does not exist, do nothing *)
+          Lwt.return ()
     )
 end

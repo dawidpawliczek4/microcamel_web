@@ -1,19 +1,8 @@
-(* orm solution would be over-engineering *)
-
 open Sqlite3
-(* open Yojson.Basic *)
-(* open Yojson.Basic.Util *)
-
-(* type query_result = {
-  rows: string array list;
-  columns: string array;
-} *)
 
 type ('row, 'r) query_mode =
-  | Raw : (Data.t array, Data.t array list) query_mode
-      (** Raw zwróci listę nieprzetworzonych wierszy *)
-  | Mapper : (Data.t array -> 'a) -> (Data.t array, 'a list) query_mode
-      (** Map zwróci listę zmapowanych wierszy *)
+  | Raw : (Data.t array, Data.t array list) query_mode      
+  | Mapper : (Data.t array -> 'a) -> (Data.t array, 'a list) query_mode      
 
 let db = ref None
 

@@ -3,8 +3,6 @@ open Microcamel_web
 
 module Store = Session.In_memory_store
 
-module T = Alcotest_lwt
-
 (* Test 1: Sprawdzamy, że nowo utworzony store nie zawiera żadnej sesji 
    (czyli wywołanie get dla dowolnego SID zwraca None). *)
 let test_store_empty_on_create _switch () =
@@ -62,15 +60,13 @@ let test_remove_session _switch () =
   Store.get store sid >|= fun after_opt ->
   Alcotest.(check bool) "Should be None after remove" false (Option.is_some after_opt)
 
-(* Składamy listę testów Alcotest: *)
-let store_tests = [
-  T.test_case "store is empty on create"  `Quick test_store_empty_on_create;
-  T.test_case "create and get session"    `Quick test_create_and_get_session;
-  T.test_case "set session value"         `Quick test_set_session_value;
-  T.test_case "remove session"            `Quick test_remove_session;
-]
-
 let () =
-  Lwt_main.run @@ T.run "Session Store tests" [
-    ("Store basic", store_tests);
+  let open Alcotest_lwt in
+  Lwt_main.run @@ run "Session Store tests" [
+    "Store basic", [
+      test_case "store is empty on create"  `Quick test_store_empty_on_create;
+      test_case "create and get session"    `Quick test_create_and_get_session;
+      test_case "set session value"         `Quick test_set_session_value;
+      test_case "remove session"            `Quick test_remove_session;
+    ]    
   ]
